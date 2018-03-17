@@ -1,5 +1,7 @@
 # crypto-mnemonic
 
+[![Build Status](https://travis-ci.org/SushiCoinHQ/crypto-mnemonic.svg?branch=master)](https://travis-ci.org/SushiCoinHQ/crypto-mnemonic)
+
 TODO: Write a description here
 
 compatible with javascript version: https://github.com/modulesio/mnemonic.js/blob/master/mnemonic.js
