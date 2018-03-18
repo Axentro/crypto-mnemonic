@@ -2,9 +2,7 @@
 
 [![Build Status](https://travis-ci.org/SushiCoinHQ/crypto-mnemonic.svg?branch=master)](https://travis-ci.org/SushiCoinHQ/crypto-mnemonic)
 
-TODO: Write a description here
-
-compatible with javascript version: https://github.com/modulesio/mnemonic.js/blob/master/mnemonic.js
+Crypto-mnemonic creates random pass phrases or (hexadecimal UIDS) of specified strength which are human readable and rememberable. It is compatible with the javascript version: [mnemonic.js](https://github.com/modulesio/mnemonic.js/blob/master/mnemonic.js) which we use for our crypto wallet.
 
 ## Installation
 
@@ -13,7 +11,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   crypto-mnemonic:
-    github: [your-github-name]/crypto-mnemonic
+    github: SushiCoinHQ/crypto-mnemonic
 ```
 
 ## Usage
@@ -22,11 +20,37 @@ dependencies:
 require "crypto-mnemonic"
 ```
 
-TODO: Write usage instructions here
+You can generate a 96-bit mnemonic, i.e. 9 words or 3 random 32-bit unsigned integers:
 
-## Development
+```
+m = Mnemonic.new(96)
+m.to_words
+["grey", "climb", "demon", "snap", "shove", "fruit", "grasp", "hum", "self"]
+```
 
-TODO: Write development instructions here
+You can also obtain the random sequence or the 96-bit number in hexadecimal notation as follows:
+
+```
+m.seed
+[174975897_u32, 171815469_u32, 1859322123_u32]
+
+m.to_hex
+"0a6deb990a3db22d6ed3010b"
+```
+
+Finally, from a list of words or a hex string it is possible to recreate the mnemonic that generated them:
+
+```
+m = Mnemonic.from_words(["grey", "climb", "demon", "snap", "shove", "fruit", "grasp", "hum", "self"]);
+m.to_hex;
+"0a6deb990a3db22d6ed3010b"
+
+m = Mnemonic.from_hex("0a6deb990a3db22d6ed3010b")
+m.to_words
+["grey", "climb", "demon", "snap", "shove", "fruit", "grasp", "hum", "self"]
+```
+
+When working with `Mnemonic` you must use either 32/64/96/128/256 etc for the bit strengths. 96 is the default.
 
 ## Contributing
 
@@ -38,4 +62,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) Kingsley Hendrickse - creator, maintainer
+- [kingsleyh](https://github.com/kingsleyh) Kingsley Hendrickse - creator, maintainer
