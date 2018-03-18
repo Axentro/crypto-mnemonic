@@ -54,7 +54,7 @@ When working with `Mnemonic` you must use either 32/64/96/128/256 etc for the bi
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/crypto-mnemonic/fork )
+1. Fork it ( https://github.com/SushiCoinHQ/crypto-mnemonic/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
