@@ -1,6 +1,6 @@
 # crypto-mnemonic
 
-[![Build Status](https://travis-ci.org/SushiCoinHQ/crypto-mnemonic.svg?branch=master)](https://travis-ci.org/SushiCoinHQ/crypto-mnemonic)
+[![Build Status](https://travis-ci.org/SushiChain/crypto-mnemonic.svg?branch=master)](https://travis-ci.org/SushiChain/crypto-mnemonic)
 
 Crypto-mnemonic creates random pass phrases or (hexadecimal UIDS) of specified strength which are human readable and rememberable. It is compatible with the javascript version: [mnemonic.js](https://github.com/modulesio/mnemonic.js/blob/master/mnemonic.js) which we use for our crypto wallet.
 
@@ -11,7 +11,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   crypto-mnemonic:
-    github: SushiCoinHQ/crypto-mnemonic
+    github: SushiChain/crypto-mnemonic
 ```
 
 ## Usage
@@ -54,7 +54,7 @@ When working with `Mnemonic` you must use either 32/64/96/128/256 etc for the bi
 
 ## Contributing
 
-1. Fork it ( https://github.com/SushiCoinHQ/crypto-mnemonic/fork )
+1. Fork it ( https://github.com/SushiChain/crypto-mnemonic/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
