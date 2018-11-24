@@ -62,4 +62,4 @@ When working with `Mnemonic` you must use either 32/64/96/128/256 etc for the bi
 
 ## Contributors
 
-- [kingsleyh](https://github.com/kingsleyh) Kingsley Hendrickse - creator, maintainer
+- [kingsleyh](https://github.com/kingsleyh) Kingsley Hendrickse - creator and  maintainer
