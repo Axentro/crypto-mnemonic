@@ -47,9 +47,9 @@ module Crypto::Mnemonic
     def self.from_words(words : Array(String)) : Mnemonic
       n = Mnemonic.wordList.size
       Mnemonic.new(words.in_groups_of(3).reduce([] of UInt32) do |seed, group|
-        w1 = Mnemonic.wordList.index(group.at(0)).not_nil!
-        w2 = Mnemonic.wordList.index(group.at(1)).not_nil!
-        w3 = Mnemonic.wordList.index(group.at(2)).not_nil!
+        w1 = Mnemonic.wordList.index(group.fetch(0, [] of UInt32)).not_nil!
+        w2 = Mnemonic.wordList.index(group.fetch(1, [] of UInt32)).not_nil!
+        w3 = Mnemonic.wordList.index(group.fetch(2, [] of UInt32)).not_nil!
         s = w1 + n * Mnemonic.mod(w2 - w1, n) + n * n * Mnemonic.mod(w3 - w2, n)
         seed.push(s.to_u32)
       end)
