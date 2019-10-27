@@ -32,8 +32,8 @@ module Crypto::Mnemonic
       @seed.reduce([] of String) do |words, seed|
         x = seed
         w1 = x % n
-        w2 = (((x / n) >> 0) + w1) % n
-        w3 = (((((x / n) >> 0) / n) >> 0) + w2) % n
+        w2 = (((x / n).to_i >> 0) + w1) % n
+        w3 = (((((x / n).to_i >> 0) / n).to_i >> 0) + w2) % n
         words.push(Mnemonic.wordList[w1])
         words.push(Mnemonic.wordList[w2])
         words.push(Mnemonic.wordList[w3])
