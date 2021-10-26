@@ -1,9 +1,10 @@
 name: crypto-mnemonic
-version: 0.1.1
+version: 0.2.0
 
 authors:
   - Kingsley Hendrickse <kingsley.hendrickse@gmail.com>
+  - Afri Schoedon <crystal@q9f.cc>
 
-crystal: 0.31.1
+crystal: 1.2.1
 
 license: MIT
