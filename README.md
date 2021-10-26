@@ -11,7 +11,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   crypto-mnemonic:
-    github: SushiChain/crypto-mnemonic
+    github: Axentro/crypto-mnemonic
 ```
 
 ## Usage
