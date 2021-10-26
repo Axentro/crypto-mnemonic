@@ -4,6 +4,12 @@ include Crypto::Mnemonic
 
 describe Mnemonic do
   describe "#new" do
+    it "should return some english words from mnemonic wordlist" do
+      Util.mnemonic_word_list.first.should eq "like"
+      Util.mnemonic_word_list[1125].should eq "hello"
+      Util.mnemonic_word_list[30].should eq "world"
+      Util.mnemonic_word_list.last.should eq "weary"
+    end
     it "should raise an error if a non 32 bit argument is supplied" do
       expect_raises(Exception, "Can only generate 32/64/96/128/256 bit passwords") do
         Mnemonic.new(7)
@@ -28,23 +34,23 @@ describe Mnemonic do
     it "should generate a word list" do
       Mnemonic.new.to_words.size.should eq(9)
     end
+
+    it "it should recover mnemonic from words" do
+      Util.mnemonic_from_words(Mnemonic.new.to_words).seed.size.should eq(3)
+    end
   end
 
   describe "#to_hex" do
     it "should generate a hex string" do
       Mnemonic.new.to_hex.size.should eq(24)
     end
+
+    it "it should recover mnemonic from hex" do
+      Util.mnemonic_from_hex(Mnemonic.new.to_hex).seed.size.should eq(3)
+    end
   end
 
-  describe "Mnemonic.from_words" do
-    Mnemonic.from_words(Mnemonic.new.to_words).seed.size.should eq(3)
-  end
-
-  describe "Mnemonic.from_hex" do
-    Mnemonic.from_hex(Mnemonic.new.to_hex).seed.size.should eq(3)
-  end
-
-  describe "Functional tests" do
+  describe "functional tests" do
     it "should return deterministic results" do
       words = ["knowledge",
                "consider",
@@ -56,10 +62,10 @@ describe Mnemonic do
                "soar",
                "caught"]
       hex = "eda5894997023e7093db0199"
-      m = Mnemonic.from_words(words)
+      m = Util.mnemonic_from_words(words)
       m.to_hex.should eq(hex)
 
-      m2 = Mnemonic.from_hex(hex)
+      m2 = Util.mnemonic_from_hex(hex)
       m2.to_words.should eq(words)
     end
   end
