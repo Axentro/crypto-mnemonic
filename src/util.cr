@@ -41,42 +41,30 @@ module Crypto::Mnemonic
       a - (a/b).floor * b
     end
 
-    # generates a padded binary string from hex with given entropy
-    def self.hex_to_padded_bin (hex : String, ent : Int32) : String
+    # generates a padded binary string from hex with given size
+    def self.hex_to_padded_bin (hex : String, size : Int) : String
       num = BigInt.new hex, 16
       bin = num.to_s(2)
-      while bin.size < ent
-        bin = "0#{bin}"
-      end
-      return bin
+      return bin.rjust size, '0'
     end
 
-    # generates a padded binary string from a big number with given entropy
-    def self.num_to_padded_bin (num : BigInt, ent : Int32) : String
+    # generates a padded binary string from a big number with given size
+    def self.num_to_padded_bin (num : BigInt | Int, size : Int) : String
       bin = num.to_s(2)
-      while bin.size < ent
-        bin = "0#{bin}"
-      end
-      return bin
+      return bin.rjust size, '0'
     end
 
-    # generates a padded hex string from a binary string with given entropy
-    def self.bin_to_padded_hex (bin : String, ent : Int32) : String
+    # generates a padded hex string from a binary string with given size
+    def self.bin_to_padded_hex (bin : String, size : Int) : String
       num = BigInt.new bin, 2
       hex = num.to_s(16)
-      while hex.size < ent / 4
-        hex = "0#{hex}"
-      end
-      return hex
+      return hex.rjust (size / 4).to_i, '0'
     end
 
-    # generates a padded hex string from a big number with given entropy
-    def self.num_to_padded_hex (num : BigInt, ent : Int32) : String
+    # generates a padded hex string from a big number with given size
+    def self.num_to_padded_hex (num : BigInt | Int, size : Int) : String
       hex = num.to_s(16)
-      while hex.size < ent / 4
-        hex = "0#{hex}"
-      end
-      return hex
+      return hex.rjust (size / 4).to_i, '0'
     end
   end
 end
