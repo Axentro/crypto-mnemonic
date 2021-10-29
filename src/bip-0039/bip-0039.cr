@@ -1,5 +1,6 @@
-require "random"
 require "big"
+require "random"
+require "openssl"
 
 module Crypto::Mnemonic
 
@@ -50,8 +51,10 @@ module Crypto::Mnemonic
     def initialize(phrase : Array(String))
       raise "Invalid seed phrase: wrong size" if phrase.size < 12 || phrase.size > 24 || phrase.size % 3 != 0
 
+      # load the english dictionary for bip-39
       dictionary = Util.bip0039_word_list
 
+      # get indices for each of the words and compute a checksummed seed
       checksummed_seed = ""
       phrase.each do |word|
         index = dictionary.index(word)
@@ -59,12 +62,16 @@ module Crypto::Mnemonic
         checksummed_seed += Util.num_to_padded_bin index, 11
       end
 
+      # retrieve seed and checksum
       seed_length = (checksummed_seed.size * 32 / 33).to_i
       checksum_length = checksummed_seed.size - seed_length
       seed = checksummed_seed[0, seed_length]
       checksum = checksummed_seed[seed_length, checksum_length]
+
+      # not every phrase is valid, therefore we verify the checksum bits
       raise "Invalid seed phrase: checksum mismatch" if checksum != checksum Util.bin_to_padded_hex seed, seed.size
 
+      # store the seed
       @ent = seed.size
       @seed = BigInt.new seed, 2
     end
